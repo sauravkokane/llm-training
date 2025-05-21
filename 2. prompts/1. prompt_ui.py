@@ -18,14 +18,16 @@ explanation_style = st.selectbox("Select style of explanation:", options=input_s
 output_length = st.selectbox("Select depth of explanation:", options=input_lengths)
 
 template = load_prompt("D:\\Python Projects\\llm_training\\2. prompts\\my_template.json")
-prompt = template.invoke(
-	dict(paper_input=research_paper, 
-	style_input=explanation_style,
-	length_input=output_length)
-)
 
 
 if st.button("Summarize"):
-	result = model.invoke(prompt)
+	chain = template | model
+	result = chain.invoke(
+		dict(
+			paper_input=research_paper, 
+			style_input=explanation_style,
+			length_input=output_length
+		)
+	)
 	st.markdown(result.content)
 	# st.latex(render_latex(result.content))
