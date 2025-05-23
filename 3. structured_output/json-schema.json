@@ -1,0 +1,22 @@
+{
+	// schema name
+	"name": "Student",
+	// description of schema
+	"description": "Schema about students",
+	// type of data filled
+	"type": "object",
+	// all attributes in data and their types
+	"properties": {
+		"name": {
+			"type": "string",
+			"description": "Name of the student."
+		},
+		"age": {
+			"type":"integer",
+			"description": "age of the student"
+		},
+		"marks": "integer"
+	},
+	// all required attributes
+	"required": ["name"]
+}
