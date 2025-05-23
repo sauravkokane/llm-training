@@ -1,16 +1,20 @@
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-from typing import TypedDict, Annotated
+from typing import TypedDict, Annotated, Optional, Literal
 
 load_dotenv()
 
-model = ChatOpenAI(model='gpt-4o-mini')
+model = ChatOpenAI(model='gpt-4o')
 
 
 # define schema
 class Review(TypedDict):
+	key_themes: Annotated[list[str], "Give list of themes discussed in the reivew."]
 	summary: Annotated[str, "A brief summary about the reivew"]
-	sentiment: Annotated[str, "return sentiment of review, either negative, positive or neutral"]
+	sentiment: Annotated[Literal['pos', 'neg', 'neut'], "return sentiment of review, either negative, positive or neutral"]
+	pros: Annotated[Optional[list[str]], "Write down all pros stated in review in a list"]
+	cons: Annotated[Optional[list[str]], "Write down all cons stated in review in a list"]
+	name: Annotated[Optional[str], "Write the name of reviewer"]
 
 # Create model with structured output
 structured_model = model.with_structured_output(Review)
@@ -29,9 +33,13 @@ Stunning 200MP camera with incredible zoom capabilities
 Long battery life with fast charging
 S-Pen support is unique and useful
                                  
-Review by Alphanso
+Review by Saurav Kokane
 """
 )
 
 
-print(result)
+
+for key, values in result.items():
+	print(f"{key}: {values}")
+
+print(result['name'])
