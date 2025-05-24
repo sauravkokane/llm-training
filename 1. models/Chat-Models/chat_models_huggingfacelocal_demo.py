@@ -5,7 +5,7 @@ os.environ['HF_HOME'] = 'D:/huggingface_home'
 
 # Ensure the model_id is specified when creating HuggingFacePipeline
 hf = HuggingFacePipeline.from_model_id(
-    model_id="Qwen/Qwen3-0.6B",
+    model_id="google/gemma-3-1b-it",
     task="text-generation",
     pipeline_kwargs={"max_new_tokens": 100},
 )
