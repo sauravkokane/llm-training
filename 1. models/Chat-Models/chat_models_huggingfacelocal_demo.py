@@ -8,6 +8,7 @@ hf = HuggingFacePipeline.from_model_id(
     model_id="google/gemma-3-1b-it",
     task="text-generation",
     pipeline_kwargs={"max_new_tokens": 100},
+    device=-1
 )
 
 chat = ChatHuggingFace(llm=hf, model_id="Qwen/Qwen3-0.6B", verbose=True) # <-- Added model_id here
