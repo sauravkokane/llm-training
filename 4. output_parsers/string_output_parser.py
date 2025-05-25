@@ -9,7 +9,8 @@ load_dotenv()
 
 login(token=os.getenv("HUGGINGFACEHUB_API_TOKEN"))
 
-repo_id = "meta-llama/Llama-3.2-3B-Instruct"
+# repo_id = "meta-llama/Llama-3.2-3B-Instruct"
+repo_id = "google/gemma-3-1b-it"
 
 llm = HuggingFaceEndpoint(
     repo_id=repo_id,
