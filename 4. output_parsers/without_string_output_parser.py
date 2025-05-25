@@ -2,8 +2,6 @@ from huggingface_hub import login
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv
-from pydantic import BaseModel, Field
-from typing import Literal
 import os
 
 load_dotenv()
