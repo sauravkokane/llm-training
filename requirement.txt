@@ -18,6 +18,9 @@ langchain-huggingface
 transformers
 huggingface-hub
 
+# lanchain visualizations
+grandalf
+
 # Environment Variable Management
 python-dotenv
 
