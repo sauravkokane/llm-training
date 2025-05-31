@@ -30,3 +30,8 @@ scikit-learn
 
 # Ui Libraries
 streamlit
+
+# accessaries
+pypdf
+pillow
+beautifulsoup4
