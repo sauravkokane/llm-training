@@ -1,13 +1,34 @@
+from langchain_openai.chat_models import ChatOpenAI
+from langchain_core.prompts import PromptTemplate
+from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import TextLoader
+from dotenv import load_dotenv
+
+load_dotenv()
+
+model = ChatOpenAI()
+
+prompt = PromptTemplate(
+	template="Write a summary for following text. \n{text}",
+	input_variables=['text']
+)
+
+parser = StrOutputParser()
 
 loader = TextLoader(file_path="example.txt", encoding='utf-8')
 
 docs = loader.load()
 
-print(f"Type of Docs: {type(docs)}") # <class 'list'>
-print(f"length of Docs: {len(docs)}") # 1
-print(f"Type of Doc: {type(docs[0])}") # <class 'langchain_core.documents.base.Document'>
-print(f"First Doc: {docs[0]}")
+# print(f"Type of Docs: {type(docs)}") # <class 'list'>
+# print(f"length of Docs: {len(docs)}") # 1
+# print(f"Type of Doc: {type(docs[0])}") # <class 'langchain_core.documents.base.Document'>
+# print(f"First Doc: {docs[0]}")
+
+chain = prompt | model | parser
+
+result = chain.invoke(dict(text=docs[0].page_content))
+
+print(result)
 
 
 # [Document(
