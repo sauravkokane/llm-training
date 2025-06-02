@@ -5,7 +5,8 @@ loader = PyPDFLoader(file_path='D:/Python Projects/llm_training/7. document_load
 
 splitter = RecursiveCharacterTextSplitter(
 	chunk_size=160,
-	chunk_overlap=0
+	chunk_overlap=0,
+	separators=["\n\n", "\n", ' ', '']
 )
 
 docs = loader.load()
@@ -13,6 +14,7 @@ docs = loader.load()
 
 result = splitter.split_documents(documents=docs[19:21])
 print(len(result))
+
 
 for i, r in enumerate(result[:20]):
 	print([i], (r.page_content))
